@@ -1,0 +1,1 @@
+{ "extends": "@tilr-dev/plugin/tsconfig.plugin.json", "include": ["src"] }

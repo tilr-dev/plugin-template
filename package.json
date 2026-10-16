@@ -1,0 +1,47 @@
+{
+  "name": "tilr-plugin-hello",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Tilr plugin template: a \"Hello\" window with a click counter kept in the plugin store, its tests, and the repo standard's configs from @tilr-dev/plugin.",
+  "license": "MIT OR Apache-2.0",
+  "homepage": "https://github.com/tilr-dev/plugin-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tilr-dev/plugin-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tilr-dev/plugin-template/issues"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "tilr": {
+    "name": "hello"
+  },
+  "scripts": {
+    "build": "tilr-plugin build",
+    "dev": "tilr-plugin build --watch",
+    "dev:site": "tilr-plugin dev",
+    "install:site": "tilr-plugin build --install",
+    "check": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json && eslint .",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "node --test \"src/**/*.test.ts\"",
+    "test:e2e": "playwright test",
+    "verify": "tilr-plugin verify",
+    "verify:full": "tilr-plugin verify --full",
+    "prepare": "lefthook install"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.0",
+    "@tilr-dev/plugin": "^0.1.16",
+    "@types/node": "^26.6.4",
+    "cordis": "npm:@deepseek-ai/cordis@4.0.1",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.12.0",
+    "lefthook": "^2.2.2",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.1"
+  }
+}

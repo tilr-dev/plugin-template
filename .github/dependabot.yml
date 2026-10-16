@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      # SDK bumps get a PR of their own, so they are easy to see and review.
+      tilr-sdk:
+        patterns:
+          - '@tilr-dev/plugin'
+      npm:
+        patterns:
+          - '*'
+        exclude-patterns:
+          - '@tilr-dev/plugin'
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

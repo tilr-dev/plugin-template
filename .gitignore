@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+dist/
+site/
+test-results/
+playwright-report/
+*.tgz
+*.local.json
+.env*
+!.env.example
+*.pem
+*.key
+*.p12
