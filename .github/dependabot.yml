@@ -9,11 +9,20 @@ updates:
       tilr-sdk:
         patterns:
           - '@tilr-dev/plugin'
+      # oxlint-tsgolint is built on one TypeScript release: the three move together.
+      typescript-oxlint:
+        patterns:
+          - 'typescript'
+          - 'oxlint'
+          - 'oxlint-tsgolint'
       npm:
         patterns:
           - '*'
         exclude-patterns:
           - '@tilr-dev/plugin'
+          - 'typescript'
+          - 'oxlint'
+          - 'oxlint-tsgolint'
   - package-ecosystem: github-actions
     directory: /
     schedule:

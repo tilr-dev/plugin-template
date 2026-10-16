@@ -32,7 +32,8 @@ those two. AGENTS.md has the rules for whoever writes the code.
 
 ```sh
 npm run dev:site      # a local Tilr page with this plugin, rebuilt on save
-npm run verify        # format, lint, types, unit, dupes, unused, secrets, deps
+npm run verify        # format, lint (oxlint), types (tsc), unit, dupes, unused, secrets, deps
+npm run check         # lint and types only
 npm run verify:full   # + e2e tests
 npm run build         # dist/index.js
 ```

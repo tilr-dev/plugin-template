@@ -24,7 +24,7 @@
     "dev": "tilr-plugin build --watch",
     "dev:site": "tilr-plugin dev",
     "install:site": "tilr-plugin build --install",
-    "check": "tsc --noEmit && tsc --noEmit -p tsconfig.test.json && eslint .",
+    "check": "tilr-plugin verify --only lint,types",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "node --test \"src/**/*.test.ts\"",
     "test:e2e": "playwright test",
@@ -33,15 +33,14 @@
     "prepare": "lefthook install"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.64.0",
-    "@tilr-dev/plugin": "^0.1.16",
+    "@tilr-dev/plugin": "^0.2.0",
     "@types/node": "^26.6.4",
     "cordis": "npm:@deepseek-ai/cordis@4.0.1",
     "esbuild": "^0.28.2",
-    "eslint": "^10.12.0",
     "lefthook": "^2.2.2",
-    "typescript": "~6.0.3",
-    "typescript-eslint": "^8.71.1"
+    "oxlint": "^1.88.0",
+    "oxlint-tsgolint": "^7.0.2004",
+    "typescript": "~7.0.2"
   }
 }
