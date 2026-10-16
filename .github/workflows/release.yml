@@ -1,0 +1,47 @@
+# Releases (repo standard, §5): release-please keeps a release PR open from the Conventional
+# Commits on main (version bump in package.json, CHANGELOG); merging it tags vX.Y.Z and creates
+# the GitHub release.
+#
+# Not yet here: the built dist/ and the gitpm manifest (plugin.json) in the release tag, the
+# format plugin managers install from. That step is pending a decision on the plugin release
+# format; until then a tag carries the sources only.
+#
+# The release-please job acts as the org GitHub App tilr-bot (a short-lived installation token
+# from actions/create-github-app-token, scoped to this repository): the release PR is opened by
+# tilr-bot, not by the GITHUB_TOKEN, so CI runs on it like on any PR. There is no bypass: the
+# release PR goes through the same required checks, and merging it is the release approval.
+# TILR_BOT_CLIENT_ID (org variable) and TILR_BOT_PRIVATE_KEY (org secret) are available to every
+# tilr-dev repository; a plugin outside the org needs its own app or token.
+name: release
+
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # all writes go through the tilr-bot token below
+    steps:
+      - id: app
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ vars.TILR_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.TILR_BOT_PRIVATE_KEY }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write # the release PR's branch, the tag, the GitHub release
+          permission-pull-requests: write # the release PR
+          permission-issues: write # release-please's labels on the release PR
+      - id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          token: ${{ steps.app.outputs.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

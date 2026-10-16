@@ -45,7 +45,15 @@ hand: delete `<site>/plugins/<name>/` and remove the name from `<site>/plugins.j
 
 ## Releases
 
-TBD: the plugin release format is not decided yet.
+release-please (`.github/workflows/release.yml`, run as the org GitHub App `tilr-bot`) keeps a
+release PR open from the Conventional Commits on `main`: the version in package.json and a
+CHANGELOG entry (while 0.x, `feat` and breaking changes bump the minor, `fix` the patch).
+Merging it tags `vX.Y.Z` and creates the GitHub release. CI runs on the release PR like on any
+other; merging it is the release approval.
+
+Not yet: the built `dist/` and the plugin manifest in the release tag (the format plugin
+managers install from) are pending a decision on the plugin release format. A plugin made from
+this template outside the `tilr-dev` organization needs its own app or token for release-please.
 
 ## License
 

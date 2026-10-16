@@ -18,7 +18,8 @@ tests; docs/GUIDELINES.md: the rules for plugins). Plugin-specific notes go belo
   optional scope, `!` / `BREAKING CHANGE:` for a break, footers `Refs: #N` / `Closes: #N`.
 - **No AI attribution**: no "Generated with …" lines, no agent `Co-Authored-By`.
 - One logical change per commit; short branches (`feat/12-short-name`), squash-merged into
-  `master`, which stays green. Releases: not set up yet (the plugin release format is TBD).
+  `main`, which stays green. Releases are release-please's (`.github/workflows/release.yml`):
+  `feat` / `fix` commits open or update the release PR; do not edit versions or CHANGELOG.md.
 
 ## Code
 
