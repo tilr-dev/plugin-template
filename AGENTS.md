@@ -38,13 +38,13 @@ tests; docs/GUIDELINES.md: the rules for plugins). Plugin-specific notes go belo
 ## This repo
 
 The Tilr plugin template, and the `hello` example plugin: a "Hello" window with a heading, a
-button and a click counter kept in the plugin's store area (`ctx.store.area('hello')`).
+button and a click counter kept in the plugin's store area (`ctx.store.area(NAME)`).
 
 - `src/index.ts`: the plugin (`definePlugin`, injects `ui`, `windows`, `store`; a DOM window
   drawn with `frame()` / `element()` from `tilr/ui`).
 - `src/lib.ts`: pure helpers (no DOM, no `'tilr'`), unit-tested in `src/lib.test.ts`.
-- `test/hello.spec.ts`: e2e on the SDK harness (`@tilr-dev/plugin/test`).
-- The name `hello` is in `src/index.ts`, `package.json` (`tilr.name`) and `test/`: a plugin made
-  from this template renames all of them together, plus `name`, `description`, `repository`,
-  `homepage` and `bugs` in package.json.
+- `test/plugin.spec.ts`: e2e on the SDK harness (`@tilr-dev/plugin/test`).
+- The plugin's name lives in `package.json` → `tilr.name` and `NAME` in `src/index.ts` (plugin,
+  window type, store area, CSS class); the tests read it from package.json.
+  `npx tilr-plugin init <name>` (next SDK release) sets both; by hand, change those two.
 - `@tilr-dev/plugin` comes from npm (`^0.1.x`), never a `file:` link.

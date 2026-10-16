@@ -1,5 +1,5 @@
 // Unit tests: `npm run test:unit` (node --test; Node strips the types itself). Only what is pure
-// goes here; the window itself is tested in the page (test/hello.spec.ts).
+// goes here; the window itself is tested in the page (test/plugin.spec.ts).
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { clickLabel, readCount } from './lib.ts'

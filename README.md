@@ -8,7 +8,7 @@ it survives a reload. Built on [`@tilr-dev/plugin`](https://www.npmjs.com/packag
 ```text
 src/index.ts         the plugin
 src/lib.ts           pure helpers, unit-tested in src/lib.test.ts
-test/hello.spec.ts   e2e on the SDK's harness (Playwright WebKit)
+test/plugin.spec.ts  e2e on the SDK's harness (Playwright WebKit)
 ```
 
 ## Make a plugin from it
@@ -22,9 +22,11 @@ npm install
 npx playwright install webkit   # once per machine, for the e2e tests
 ```
 
-Then rename: in package.json `name`, `description`, `tilr.name`, `repository`, `homepage` and
-`bugs`; the plugin's `name`, window type and store area in `src/index.ts`; `test/`. (A future
-`npx tilr-plugin init` will do this for you.) AGENTS.md has the rules for whoever writes the code.
+Then name it. The plugin's name lives in two places: `package.json` → `tilr.name` and `NAME` in
+`src/index.ts` (the plugin, its window type, store area and CSS class); the tests read it from
+package.json. `npx tilr-plugin init my-plugin` (from the next SDK release) sets both, plus
+package.json's `name`, `repository`, `homepage` and `bugs` from the git remote. By hand: change
+those two. AGENTS.md has the rules for whoever writes the code.
 
 ## Run
 
@@ -36,6 +38,9 @@ npm run build         # dist/index.js
 ```
 
 Install into a Tilr site folder (a test Tilr): `npm run install:site -- --site <folder>`.
+
+Remove from Tilr: `npx tilr-plugin uninstall-site [--site DIR]` (from the next SDK release). By
+hand: delete `<site>/plugins/<name>/` and remove the name from `<site>/plugins.json`.
 
 ## Releases
 
