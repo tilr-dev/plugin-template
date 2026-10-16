@@ -1,12 +1,12 @@
 # CI: `npm run verify:full` (tilr-plugin verify --full: format, lint, types, unit, dupes, unused,
-# secrets, deps, e2e) on every PR and every push to master.
+# secrets, deps, e2e) on every PR and every push to main.
 # Only `pull_request` (never pull_request_target): a PR's code runs without secrets.
 name: ci
 
 on:
   pull_request:
   push:
-    branches: [master]
+    branches: [main]
 
 permissions:
   contents: read
