@@ -25,7 +25,8 @@ tests; docs/GUIDELINES.md: the rules for plugins). Plugin-specific notes go belo
 - No `any`, no non-null `!`, no `@ts-ignore` without a reason, no floating promises, no
   `console` in `src/`. Complexity ≤ 15, depth ≤ 4, params ≤ 4.
 - A lint disable names its rules and a reason: `// oxlint-disable-next-line rule -- why`; an
-  unused one is an error.
+  unused one is an error. Never disable a whole file: a range `/* oxlint-disable rule -- why */`
+  needs a later `/* oxlint-enable rule */`.
 - The configs are one-liners onto the SDK (`.oxlintrc.json`, `biome.json`, `lefthook.yml`,
   `commitlint.config.js`, `tsconfig.src.json`, `tsconfig.test.json`): change the rules in the
   SDK, not here. `tsconfig.json` only points at the two projects (so oxlint's type-aware rules
